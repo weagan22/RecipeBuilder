@@ -236,9 +236,9 @@ Public Class MainForm
         Dim vac As New List(Of String)
 
         For i = 0 To DataGridView1.Rows.Count - 1
-            time.Add(i & ":" & DataGridView1.Item(1, i).Value & vbCrLf)
-            temp.Add(i & ":" & DataGridView1.Item(2, i).Value & vbCrLf)
-            press.Add(i & ":" & DataGridView1.Item(3, i).Value & vbCrLf)
+            time.Add(i + 1 & ":" & DataGridView1.Item(1, i).Value & vbCrLf)
+            temp.Add(i + 1 & ":" & DataGridView1.Item(2, i).Value & vbCrLf)
+            press.Add(i + 1 & ":" & DataGridView1.Item(3, i).Value & vbCrLf)
 
             Dim vacVal As Integer = 0
             If DataGridView1.Item(4, i).Value = Nothing Then
@@ -247,7 +247,7 @@ Public Class MainForm
                 vacVal = DataGridView1.Item(4, i).Value
             End If
 
-            vac.Add(i & ":" & vacVal & vbCrLf)
+            vac.Add(i + 1 & ":" & vacVal & vbCrLf)
         Next
 
         Dim recipeString As String = "AutoClaveDesktop:Integer Table.nTable_TimeSetpoints_Edit" & vbCrLf & String.Join("", time.ToArray()) & vbCrLf &
