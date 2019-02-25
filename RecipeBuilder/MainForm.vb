@@ -290,4 +290,14 @@ Public Class MainForm
     Private Sub NewToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewToolStripMenuItem.Click
         BtnNew_Click(sender, e)
     End Sub
+
+    Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
+        If fileChanged = True Then
+            If MsgBox("Would you like to save the current edits?", vbYesNo, "Save Check") = vbYes Then
+                Call SaveBtn_Click(sender, e)
+            End If
+        End If
+
+        Application.Exit()
+    End Sub
 End Class
