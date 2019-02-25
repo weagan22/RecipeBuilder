@@ -134,7 +134,7 @@ Public Class MainForm
         Me.Text = "Autoclave Recipe Builder || " & recipeName
 
 
-        Dim time() As String = settingsArr(readValues, "AutoClaveDesktop:Integer Table.nTable_TempTimeSetpoints_Edit")
+        Dim time() As String = settingsArr(readValues, "AutoClaveDesktop:Integer Table.nTable_TimeSetpoints_Edit")
         Dim temp() As String = settingsArr(readValues, "AutoClaveDesktop:Float Table.fTable_OvenTemp_Setpoints_Edit")
         Dim press() As String = settingsArr(readValues, "AutoClaveDesktop:Float Table.fTable_OvenPress_Setpoints_Edit")
         Dim vac() As String = settingsArr(readValues, "AutoClaveDesktop:Integer Table.nTable_VacuumOnOff_Edit")
@@ -250,7 +250,7 @@ Public Class MainForm
             vac.Add(i & ":" & vacVal & vbCrLf)
         Next
 
-        Dim recipeString As String = "AutoClaveDesktop:Integer Table.nTable_TempTimeSetpoints_Edit" & vbCrLf & String.Join("", time.ToArray()) & vbCrLf &
+        Dim recipeString As String = "AutoClaveDesktop:Integer Table.nTable_TimeSetpoints_Edit" & vbCrLf & String.Join("", time.ToArray()) & vbCrLf &
             "AutoClaveDesktop:Float Table.fTable_OvenTemp_Setpoints_Edit" & vbCrLf & String.Join("", temp.ToArray()) & vbCrLf &
             "AutoClaveDesktop:Float Table.fTable_OvenPress_Setpoints_Edit" & vbCrLf & String.Join("", press.ToArray()) & vbCrLf &
             "AutoClaveDesktop:Integer Table.nTable_VacuumOnOff_Edit" & vbCrLf & String.Join("", vac.ToArray()) & vbCrLf &
@@ -301,4 +301,14 @@ Public Class MainForm
         Application.Exit()
     End Sub
 
+    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
+        If e.ColumnIndex = 4 And e.RowIndex <> -1 Then
+            DataGridView1.EndEdit()
+        End If
+
+    End Sub
+
+    Private Sub BtnSaveAs_Click(sender As Object, e As EventArgs) Handles BtnSaveAs.Click
+        saveAs()
+    End Sub
 End Class

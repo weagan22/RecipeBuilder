@@ -59,6 +59,7 @@ Partial Class MainForm
         Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
         Me.OpenFileDialog = New System.Windows.Forms.OpenFileDialog()
         Me.SaveFileDialog = New System.Windows.Forms.SaveFileDialog()
+        Me.BtnSaveAs = New System.Windows.Forms.Button()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Chart1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
@@ -283,13 +284,12 @@ Partial Class MainForm
         '
         'TableLayoutPanel2
         '
-        Me.TableLayoutPanel2.ColumnCount = 4
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 250.0!))
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel2.ColumnCount = 3
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 500.0!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
         Me.TableLayoutPanel2.Controls.Add(Me.TableLayoutPanel4, 0, 0)
-        Me.TableLayoutPanel2.Controls.Add(Me.PictureBox1, 2, 0)
+        Me.TableLayoutPanel2.Controls.Add(Me.PictureBox1, 1, 0)
         Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel2.Location = New System.Drawing.Point(3, 3)
         Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
@@ -300,27 +300,29 @@ Partial Class MainForm
         '
         'TableLayoutPanel4
         '
-        Me.TableLayoutPanel4.ColumnCount = 2
-        Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel4.Controls.Add(Me.OpenBtn, 0, 0)
-        Me.TableLayoutPanel4.Controls.Add(Me.SaveBtn, 1, 0)
-        Me.TableLayoutPanel4.Controls.Add(Me.BtnNew, 0, 1)
+        Me.TableLayoutPanel4.ColumnCount = 3
+        Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
+        Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
+        Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
+        Me.TableLayoutPanel4.Controls.Add(Me.SaveBtn, 2, 0)
+        Me.TableLayoutPanel4.Controls.Add(Me.OpenBtn, 1, 0)
+        Me.TableLayoutPanel4.Controls.Add(Me.BtnNew, 0, 0)
+        Me.TableLayoutPanel4.Controls.Add(Me.BtnSaveAs, 2, 1)
         Me.TableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel4.Location = New System.Drawing.Point(3, 3)
         Me.TableLayoutPanel4.Name = "TableLayoutPanel4"
         Me.TableLayoutPanel4.RowCount = 2
         Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel4.Size = New System.Drawing.Size(244, 88)
+        Me.TableLayoutPanel4.Size = New System.Drawing.Size(494, 88)
         Me.TableLayoutPanel4.TabIndex = 4
         '
         'OpenBtn
         '
         Me.OpenBtn.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.OpenBtn.Location = New System.Drawing.Point(3, 3)
+        Me.OpenBtn.Location = New System.Drawing.Point(167, 3)
         Me.OpenBtn.Name = "OpenBtn"
-        Me.OpenBtn.Size = New System.Drawing.Size(116, 38)
+        Me.OpenBtn.Size = New System.Drawing.Size(158, 38)
         Me.OpenBtn.TabIndex = 1
         Me.OpenBtn.Text = "Open"
         Me.OpenBtn.UseVisualStyleBackColor = True
@@ -328,9 +330,9 @@ Partial Class MainForm
         'SaveBtn
         '
         Me.SaveBtn.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SaveBtn.Location = New System.Drawing.Point(125, 3)
+        Me.SaveBtn.Location = New System.Drawing.Point(331, 3)
         Me.SaveBtn.Name = "SaveBtn"
-        Me.SaveBtn.Size = New System.Drawing.Size(116, 38)
+        Me.SaveBtn.Size = New System.Drawing.Size(160, 38)
         Me.SaveBtn.TabIndex = 3
         Me.SaveBtn.Text = "Save"
         Me.SaveBtn.UseVisualStyleBackColor = True
@@ -338,9 +340,9 @@ Partial Class MainForm
         'BtnNew
         '
         Me.BtnNew.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.BtnNew.Location = New System.Drawing.Point(3, 47)
+        Me.BtnNew.Location = New System.Drawing.Point(3, 3)
         Me.BtnNew.Name = "BtnNew"
-        Me.BtnNew.Size = New System.Drawing.Size(116, 38)
+        Me.BtnNew.Size = New System.Drawing.Size(158, 38)
         Me.BtnNew.TabIndex = 4
         Me.BtnNew.Text = "New"
         Me.BtnNew.UseVisualStyleBackColor = True
@@ -379,6 +381,16 @@ Partial Class MainForm
         'SaveFileDialog
         '
         Me.SaveFileDialog.Filter = "Recipe Files|*.rcp"
+        '
+        'BtnSaveAs
+        '
+        Me.BtnSaveAs.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BtnSaveAs.Location = New System.Drawing.Point(331, 47)
+        Me.BtnSaveAs.Name = "BtnSaveAs"
+        Me.BtnSaveAs.Size = New System.Drawing.Size(160, 38)
+        Me.BtnSaveAs.TabIndex = 5
+        Me.BtnSaveAs.Text = "Save As"
+        Me.BtnSaveAs.UseVisualStyleBackColor = True
         '
         'MainForm
         '
@@ -436,4 +448,5 @@ Partial Class MainForm
     Friend WithEvents TableLayoutPanel4 As TableLayoutPanel
     Friend WithEvents BtnNew As Button
     Friend WithEvents NewToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents BtnSaveAs As Button
 End Class
