@@ -1,4 +1,5 @@
-﻿Imports System.IO
+﻿Imports System.ComponentModel
+Imports System.IO
 
 Public Class MainForm
 
@@ -108,8 +109,14 @@ Public Class MainForm
 
     Private Sub OpenBtn_Click(sender As Object, e As EventArgs) Handles OpenBtn.Click
 
+        If fileChanged = True Then
+            If MsgBox("Would you like to save the current edits?", vbYesNo, "Save Check") = vbYes Then
+                Call SaveBtn_Click(sender, e)
+            End If
+        End If
+
         If OpenFileDialog.ShowDialog() = DialogResult.OK Then
-            openfile(OpenFileDialog.FileName)
+            openFile(OpenFileDialog.FileName)
         End If
 
     End Sub
@@ -201,10 +208,6 @@ Public Class MainForm
         OpenBtn.PerformClick()
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim test As Integer = 1
-    End Sub
-
     Private Sub SaveBtn_Click(sender As Object, e As EventArgs) Handles SaveBtn.Click
         If currentFile = "" Then
             Call saveAs()
@@ -213,7 +216,7 @@ Public Class MainForm
 
         Dim recStr As String = getRecipe(currentFile)
         IO.File.WriteAllText(currentFile, recStr)
-        openfile(currentFile)
+        openFile(currentFile)
 
     End Sub
 
@@ -221,7 +224,7 @@ Public Class MainForm
         If SaveFileDialog.ShowDialog() = DialogResult.OK Then
             Dim recStr As String = getRecipe(SaveFileDialog.FileName)
             IO.File.WriteAllText(SaveFileDialog.FileName, recStr)
-            openfile(SaveFileDialog.FileName)
+            openFile(SaveFileDialog.FileName)
         End If
     End Sub
 
@@ -236,7 +239,15 @@ Public Class MainForm
             time.Add(i & ":" & DataGridView1.Item(1, i).Value & vbCrLf)
             temp.Add(i & ":" & DataGridView1.Item(2, i).Value & vbCrLf)
             press.Add(i & ":" & DataGridView1.Item(3, i).Value & vbCrLf)
-            vac.Add(i & ":" & DataGridView1.Item(4, i).Value & vbCrLf)
+
+            Dim vacVal As Integer = 0
+            If DataGridView1.Item(4, i).Value = Nothing Then
+                vacVal = 0
+            Else
+                vacVal = DataGridView1.Item(4, i).Value
+            End If
+
+            vac.Add(i & ":" & vacVal & vbCrLf)
         Next
 
         Dim recipeString As String = "AutoClaveDesktop:Integer Table.nTable_TempTimeSetpoints_Edit" & vbCrLf & String.Join("", time.ToArray()) & vbCrLf &
@@ -252,5 +263,31 @@ Public Class MainForm
 
     Private Sub SaveFileToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveFileToolStripMenuItem.Click
         Call saveAs()
+    End Sub
+
+    Private Sub SaveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveToolStripMenuItem.Click
+        Call SaveBtn_Click(sender, e)
+    End Sub
+
+    Private Sub MainForm_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        If fileChanged = True Then
+            If MsgBox("Would you like to save the current edits?", vbYesNo, "Save Check") = vbYes Then
+                Call SaveBtn_Click(sender, e)
+            End If
+        End If
+    End Sub
+
+    Private Sub BtnNew_Click(sender As Object, e As EventArgs) Handles BtnNew.Click
+        If fileChanged = True Then
+            If MsgBox("Would you like to save the current edits?", vbYesNo, "Save Check") = vbYes Then
+                Call SaveBtn_Click(sender, e)
+            End If
+        End If
+
+        Application.Restart()
+    End Sub
+
+    Private Sub NewToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewToolStripMenuItem.Click
+        BtnNew_Click(sender, e)
     End Sub
 End Class
